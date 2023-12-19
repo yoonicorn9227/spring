@@ -27,7 +27,7 @@ public class BServiceImpl implements BService {
 		return boardDto;
 	}
 
-	@Override //3/ 게시글 파일 저장
+	@Override //3. 게시글 파일 저장
 	public void bInsert(BoardDto bdto) {
 		boardMapper.bInsert(bdto);
 	}//bInsert()
