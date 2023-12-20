@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.java.www.dto.MemberDto;
 import com.java.www.service.MService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -21,33 +22,29 @@ public class MController {
 	@RequestMapping("login")
 	public String login() {
 		return "member/login";
-	}// login()
+	}// login
+
 	@RequestMapping("logout")
 	public String logout() {
 		session.invalidate();
 		return "member/logout";
-	}// logout()
+	}// login
 
 	@RequestMapping("doLogin")
-	public String doLogin(MemberDto mdto, Model model) {
+	public String doLogin(MemberDto mdto, Model model, HttpServletRequest request) {
+		MemberDto memberDto = mService.doLogin(mdto);
 		int result = 0;
-		System.out.println("MController ID : " + mdto.getId());
-		System.out.println("MController PW : " + mdto.getPw());
-
-		MemberDto memberDto = mService.loginSelect(mdto);
 		if (memberDto != null) {
 			session.setAttribute("session_id", memberDto.getId());
 			session.setAttribute("session_name", memberDto.getName());
-			System.out.println("MController ID : " + memberDto.getId());
+			System.out.println("MController ID  있음 : " + memberDto.getId());
 			result = 1;
 		} else {
 			System.out.println("MController  memberDto : null");
-		} // if-else
-
-		// model 데이터 저장후 보내기
+		}
+		// model에 데이터 저장 후 보내기
 		model.addAttribute("result", result);
-
 		return "member/doLogin";
-	}// doLogin()
+	}// doLogin
 
 }// MController
