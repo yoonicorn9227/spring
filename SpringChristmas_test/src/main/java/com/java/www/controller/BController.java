@@ -2,6 +2,7 @@ package com.java.www.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +24,13 @@ public class BController {
 
 	// 1.게시글 전체 가져오기
 	@RequestMapping("bList")
-	public String bList(Model model) {
-		ArrayList<BoardDto> list = bService.selectAll();
-		//★하단 넘버링 : page, rowPerPage : 1pg당 게시글수, startPage, endPage, maxPage
-		
-		
-		// model에 담아서 전송
-		model.addAttribute("list", list);
+	public String bList(@RequestParam(defaultValue = "1") int page, Model model) {
+		// DB에서 가져오기
+		Map<String, Object> map = bService.selectAll(page);
+
+		// model에 저장후 bList.jsp전송
+		model.addAttribute("map", map);
+		System.out.println("게시글 총 갯수 : " + (int) map.get("countAll"));
 		return "board/bList";
 	}// bList
 
@@ -38,7 +39,7 @@ public class BController {
 	public String bView(@RequestParam(defaultValue = "1") int bno, Model model) {
 		Map<String, Object> map = bService.selectOne(bno);
 
-		// model
+		// model 저장후 bView.jsp전송
 		model.addAttribute("map", map);
 
 		return "board/bView";
@@ -86,7 +87,7 @@ public class BController {
 	public String bUpdate(@RequestParam(defaultValue = "1") int bno, Model model) {
 		Map<String, Object> map = bService.selectOne(bno);
 
-		// Model 저장후 보내기
+		// Model 저장후 bUpdate.jsp전송
 		model.addAttribute("map", map);
 		return "board/bUpdate";
 	}// bUpdate
@@ -143,7 +144,7 @@ public class BController {
 			bdto.setBfile("");
 			System.out.println("BController : doBReply 파일첨부가 없습니다.");
 		} // if-else
-		
+
 		// ▼DB로 전송
 		bService.doBReply(bdto);
 		return "board/doBReply";

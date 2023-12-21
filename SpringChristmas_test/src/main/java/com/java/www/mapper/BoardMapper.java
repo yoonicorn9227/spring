@@ -9,8 +9,11 @@ import com.java.www.dto.BoardDto;
 @Mapper
 public interface BoardMapper {
 
-	// 1.게시글 전체 가져오기
-	ArrayList<BoardDto> selectAll();
+	// 1.게시글 전체 가져오기 & 게시판 하단넘버링
+	ArrayList<BoardDto> selectAll(int startRow, int endRow);
+
+	// 1-2.게시글 총갯수
+	int selectCountAll();
 
 	// 2.게시글 1개 가져오기
 	BoardDto selectOne(int bno);
@@ -20,8 +23,8 @@ public interface BoardMapper {
 
 	// 2-2.게시글 다음글
 	BoardDto selectNext(int bno);
-	
-	//2-3.게시글 조회수
+
+	// 2-3.게시글 조회수
 	void bhitUp(int bno);
 
 	// 3. 게시글 1개 저장
@@ -39,7 +42,4 @@ public interface BoardMapper {
 	// 6-1.다른 게시글 bstep 1증가
 	void bstepUp(BoardDto bdto);
 
-	
-
-	
 }// InterFace(BoardMapper)

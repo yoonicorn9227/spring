@@ -9,8 +9,13 @@
 		<![CDATA[
        select * from ( select rownum rnum, a.* from
        ( select * from board order by bgroup desc,bstep asc ) a )
-        where rnum>=1 and rnum<=20
+        where rnum>=#{startRow} and rnum<=#{endRow}
        ]]>
+	</select>
+	
+	<!-- 게시글 총갯수 -->
+	<select id="selectCountAll" resultType="int">
+	 	select count(*) from board
 	</select>
 
 	<!-- 게시글1개 가져오기 : 현재글 -->
