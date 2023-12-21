@@ -1,0 +1,43 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- MemberMapper.java 연결 -->
+<mapper namespace="com.java.www.mapper.MemberMapper">
+
+	<select id="selectAll3" resultMap="memBoardDto">
+		select a.*,b.bno, b.btitle,
+		b.id, b.bdate from member a, board b
+		where a.id = b.id
+	</select>
+	<!-- ★resultMap 1.member 선언 2.board 선언 3. 합친 것 선언 -->
+	<!-- resultMap 3.합친것선언 -->
+	<resultMap id="memBoardDto" type="com.java.www.dto.MemBoardDto">
+		<collection property="memberDto" resultMap="memberDtoMap" />
+		<collection property="boardDto" resultMap="boardDtoMap" />
+	</resultMap>
+
+	<!-- resultMap 1.member선언 -->
+	<resultMap id="memberDtoMap"
+		type="com.java.www.dto.MemberDto">
+		<result column="id" property="id" />
+		<result column="pw" property="pw" />
+		<result column="name" property="name" />
+		<result column="phone" property="phone" />
+		<result column="gender" property="gender" />
+		<result column="hobby" property="hobby" />
+	</resultMap>
+
+	<!-- resultMap 2.board선언 -->
+	<resultMap id="boardDtoMap" type="com.java.www.dto.BoardDto">
+		<result column="bno" property="id" />
+		<result column="btitle" property="btitle" />
+		<result column="bcontent" property="bcontent" />
+		<result column="bdate" property="bdate" />
+		<result column="id" property="id" />
+		<result column="bgroup" property="bgroup" />
+		<result column="bstep" property="bstep" />
+		<result column="bindent" property="bindent" />
+		<result column="bhit" property="bhit" />
+		<result column="bfile" property="bfile" />
+	</resultMap>
+</mapper>
