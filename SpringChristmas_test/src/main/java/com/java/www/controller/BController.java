@@ -25,7 +25,9 @@ public class BController {
 	@RequestMapping("bList")
 	public String bList(Model model) {
 		ArrayList<BoardDto> list = bService.selectAll();
-
+		//★하단 넘버링 : page, rowPerPage : 1pg당 게시글수, startPage, endPage, maxPage
+		
+		
 		// model에 담아서 전송
 		model.addAttribute("list", list);
 		return "board/bList";
@@ -112,7 +114,7 @@ public class BController {
 		return "board/doBUpdate";
 	}// doBUpdate(BoardDto bdto, @RequestPart MultipartFile files)
 
-	//6. 게시글 답글 - 게시글 답글 페이지
+	// 6. 게시글 답글 - 게시글 답글 페이지
 	@RequestMapping("bReply")
 	public String bReply(@RequestParam(defaultValue = "1") int bno, Model model) {
 		System.out.println("BController bReply bno : " + bno);
@@ -121,6 +123,30 @@ public class BController {
 		// model 데이터 저장후 보내기
 		model.addAttribute("map", map);
 		return "board/bReply";
+	}// bReply
+
+	// 6-1.게시글 답글 - 게시글 답글 저장
+	@RequestMapping("doBReply")
+	public String doBReply(BoardDto bdto, @RequestPart MultipartFile files, Model model) throws Exception {
+
+		String orgName = "";
+		String newName = "";
+		if (!files.isEmpty()) {
+			orgName = files.getOriginalFilename();
+			long time = System.currentTimeMillis();
+			newName = String.format("%s_%s", orgName, newName);
+			String upload = "c:/upload/";
+			File f = new File(upload + newName);
+			files.transferTo(f);
+			bdto.setBfile(newName);
+		} else {
+			bdto.setBfile("");
+			System.out.println("BController : doBReply 파일첨부가 없습니다.");
+		} // if-else
+		
+		// ▼DB로 전송
+		bService.doBReply(bdto);
+		return "board/doBReply";
 	}// bReply
 
 }// BController

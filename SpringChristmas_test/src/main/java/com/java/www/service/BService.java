@@ -15,13 +15,14 @@ public interface BService {
 
 	// 3. 게시글 1개 작성
 	void doBInsert(BoardDto bdto);
-	
+
 	// 4. 게시글 1개 삭제
 	void bDelete(int bno);
 
 	// 5. 게시글 1개 수정
 	void doBUpdate(BoardDto bdto);
 
-
+	// 6. 게시글 답글 1개 저장
+	void doBReply(BoardDto bdto);
 
 }// InterFace(BService)

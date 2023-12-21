@@ -20,9 +20,9 @@
     <form action="doBReply" name="replyFrm" method="post" enctype="multipart/form-data">
       <table>
       <input type="hidden" name="id" value="${session_id }">
-      <input type="hidden" name="bgroup" value="">
-      <input type="hidden" name="bstep" value="">
-      <input type="hidden" name="bindent" value="">
+      <input type="hidden" name="bgroup" value="${map.bdto.bgroup }">
+      <input type="hidden" name="bstep" value="${map.bdto.bstep }">
+      <input type="hidden" name="bindent" value="${map.bdto.bindent }">
         <colgroup>
           <col width="15%">
           <col width="85%">
@@ -41,10 +41,10 @@
           <th>내용</th>
           <td>
 <textarea name="bcontent" cols="50" rows="10">
-
----------------------------
 [게시글 원본]
 ${map.bdto.bcontent }
+---------------------------
+
 </textarea>
           </td>
         </tr>
