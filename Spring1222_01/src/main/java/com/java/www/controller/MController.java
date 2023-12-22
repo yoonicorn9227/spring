@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.java.www.dto.MemberDto;
 import com.java.www.service.MService;
 
 import jakarta.servlet.http.HttpSession;
@@ -23,7 +25,7 @@ public class MController {
 	public String login() {
 		return "member/login";
 	}// login
-	
+
 	@GetMapping("logout") // 1. 로그아웃
 	public String logout() {
 		session.invalidate();
@@ -42,11 +44,30 @@ public class MController {
 	public String join01() {
 		return "member/join01";
 	}// join01
-	
-	@GetMapping("join02")
+
+	@GetMapping("join02") // 회원가입 정보저장
 	public String join02() {
 		return "member/join02";
 	}// join02
+
+	@PostMapping("join02") // 회원가입 정보저장
+	@ResponseBody
+	public String join02(MemberDto mdto,String pw1, String f_tell, String m_tell, String l_tell) {
+		String phone = f_tell +"-"+ m_tell +"-"+ l_tell;
+		mdto.setPhone(phone);
+		mdto.setPw(pw1);
+		String result = mService.mInsert(mdto);
+		return result;
+	}// join02
+
+	@PostMapping("idCheck") // ajax => @ResponseBody
+	@ResponseBody
+	public String idCheck(String id) {
+		System.out.println("MController idCheck id : " + id);
+		// db접근
+		String result = mService.idCheck(id);
+		return result;
+	}// idCheck
 
 	@GetMapping("join03")
 	public String join03() {

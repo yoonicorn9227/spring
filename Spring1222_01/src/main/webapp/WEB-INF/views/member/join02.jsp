@@ -8,18 +8,21 @@
 	<head>
 		<meta charset="UTF-8">
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<script src="/js/join02.js"></script>
-		<link rel="stylesheet" type="text/css" href="../css/style_header.css">
 		<link rel="stylesheet" type="text/css" href="../css/style_join02_info_input.css">
 		<link rel="stylesheet" type="text/css" href="../css/style_footer.css">
 		<title>회원가입 - 회원정보입력</title>
+		<script>
+		
+		</script>
 	</head>
 	<body>
 		<header>
 			<div id="nav_up">
 				<ul>
-					<li><a href="#">회원가입</a></li>
-					<li><a href="#">로그인</a></li>
+					<li><a href="join01">회원가입</a></li>
+					<li><a href="/">로그인</a></li>
 					<li><a href="#">고객행복센터</a></li>
 					<li><a href="#">배송지역검색</a></li>
 					<li><a href="#">기프트카드 등록</a></li>
@@ -44,13 +47,8 @@
 				</ul>
 			</nav>
 		</header>
-		
-		
-		
-		
-		
 		<section>
-			<form name="agree" method="get" action="join03_success.html">
+			<form name="agreeFrm" id="agreeFrm" method="get" action="#">
 				<div id="subBanner"></div>
 				<div id="locationN">
 					<ul>
@@ -100,11 +98,17 @@
 							<div></div>
 							<label for="id">아이디</label>
 						</dt>
+						<script>
+							$(function(){
+								
+								
+							});//제이쿼리 최신
+						</script>
 						<dd>
 							<input type="text" id="id" name="id" minlength="4" maxlength="16" required/>
-							<input type="button" value="중복확인"/>
+							<input type="button" id="idCheckBtn" value="중복확인"/>
 							<span>4~16자리의 영문, 숫자, 특수기호(_)만 사용하실 수 있습니다.</span>
-							<span>첫 글자는 영문으로 입력해 주세요.</span>
+							<span id="idChkTxt">첫 글자는 영문으로 입력해 주세요.</span>
 						</dd>
 					</dl>
 					<dl id="join_pw1_dl">
@@ -125,7 +129,7 @@
 						</dt>
 						<dd>
 							<input type="password" id="pw2" name="pw2" minlength="8" required />
-							<span>비밀번호를 다시 한번 입력해 주세요.</span>
+							<span id="pwChkTxt">비밀번호를 다시 한번 입력해 주세요.</span>
 						</dd>
 					</dl>
 					
@@ -136,11 +140,11 @@
 							<label for="">주소</label>
 						</dt>
 						<dd>
-							<input type="text" id="f_postal" name="f_postal" required />
+							<input type="text" id="f_postal" name="f_postal" required / placeholder="ex)03307">
 							
-							<input type="button" value="우편번호"/>
-							<input type="text" id="address1" name="address1" required />
-							<input type="text" id="address2" name="address2" required />
+							<input type="button" id="addressBtn" value="우편번호 "/ >
+							<input type="text" id="address1" name="address1" required / placeholder="ex)서울특별시 진관동 진관4로">
+							<input type="text" id="address2" name="address2" required / placeholder="상세주소 입력" />
 						</dd>
 						
 					</dl>
@@ -188,52 +192,28 @@
 						<dd>
 							<ul>
 								<li>
-									<input type="checkbox" name="computer" id="computer" value="computer" />
+									<input type="checkbox" name="hobby" id="computer" value="computer" />
 									<label for="computer">컴퓨터/인터넷</label>
 								</li>
 								<li>
-									<input type="checkbox" name="movie" id="movie" value="movie" />
+									<input type="checkbox" name="hobby" id="movie" value="movie" />
 									<label for="movie">영화/비디오</label>
 								</li>
 								<li>
-									<input type="checkbox" name="music" id="music" value="music" />
+									<input type="checkbox" name="hobby" id="music" value="music" />
 									<label for="music">음악</label>
 								</li>
 								<li>
-									<input type="checkbox" name="shopping" id="shopping" value="shopping" />
+									<input type="checkbox" name="hobby" id="shopping" value="shopping" />
 									<label for="shopping">쇼핑</label>
 								</li>
 								<li>
-									<input type="checkbox" name="game" id="game" value="game" />
+									<input type="checkbox" name="hobby" id="game" value="game" />
 									<label for="game">게임</label>
 								</li>
 								<li>
-									<input type="checkbox" name="culture" id="culture" value="culture" />
-									<label for="culture">문화/예술</label>
-								</li>
-								<li>
-									<input type="checkbox" name="parenting" id="parenting" value="parenting" />
-									<label for="parenting">육아/아동</label>
-								</li>
-								<li>
-									<input type="checkbox" name="cooking" id="cooking" value="cooking" />
+									<input type="checkbox" name="hobby" id="cooking" value="cooking" />
 									<label for="parenting">요리</label>
-								</li>
-								<li>
-									<input type="checkbox" name="interier" id="interier" value="interier" />
-									<label for="interier">인테리어</label>
-								</li>
-								<li>
-									<input type="checkbox" name="leisure" id="leisure" value="leisure" />
-									<label for="leisure">레저/여가</label>
-								</li>
-								<li>
-									<input type="checkbox" name="health" id="health" value="health" />
-									<label for="health">건강/다이어트</label>
-								</li>
-								<li>
-									<input type="checkbox" name="fashion" id="fashion" value="fashion" />
-									<label for="fashion">패션/미용</label>
 								</li>
 							</ul>
 						</dd>
@@ -241,17 +221,11 @@
 				</fieldset>
 				<div id="info_input_button">
 					<input type="reset" value="취소하기" />
-					<input type="submit" value="가입하기" />
+					<input type="button" id="saveBtn" value="가입하기" />
 				</div>
 				
 			</form>
 		</section>
-		
-		
-		
-		
-		
-		
 		
 		<footer>
 			<div id="footer_wrap">

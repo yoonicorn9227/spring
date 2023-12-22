@@ -18,8 +18,8 @@
 	 		<div id="nav_up">
 	 			<ul>
 	 				<c:if test="${session_id ==null}">
-	 				<li><a href="member/login">로그인</a></li>
 	 				<li><a href="member/join01">회원가입</a></li>
+	 				<li><a href="member/login">로그인</a></li>
 	 				</c:if>
 	 				<c:if test="${session_id !=null}">
 	 				<li>${session_name }님</li>

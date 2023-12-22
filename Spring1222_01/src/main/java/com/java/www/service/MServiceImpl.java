@@ -28,4 +28,23 @@ public class MServiceImpl implements MService {
 		return result;
 	}// login(id,pw)
 
+	@Override //아이디 중복체크
+	public String idCheck(String id) {
+		String result="사용불가";
+		
+		//DB접근
+		MemberDto mdto = memberMapper.idCheck(id);
+		if(mdto==null) result ="사용가능";
+		return result;
+	}//idCheck()
+
+	@Override
+	public String mInsert(MemberDto mdto) {
+		memberMapper.mInsert(mdto);
+		System.out.println("MServiceImpl mInsert mdto id : "+mdto.getId());
+		//DB전송
+		String result="가입완료";
+		return result;
+	}
+
 }// CLASS

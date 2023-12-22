@@ -11,18 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/style_join01_terms.css">
 		<link rel="stylesheet" type="text/css" href="../css/style_footer.css">
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-		<script>
-			$(function(){
-				$("#saveBtn").click(function(){
-				if($("input[type='radio']").length<3) {
-					alert("약관동의를 모두 체크하지 않았습니다.");
-					return false;
-				}//if
-					location.href="join02";
-				});//#saveBtn
-				
-			});//
-		</script>
+		<script src="/js/join01.js"></script>
 		<title>회원가입 - 약관동의</title>
 	</head>
 	<body>
@@ -61,7 +50,7 @@
 		
 		
 		<section>
-			<form name="agree" method="get" action="join02_info_input.html">
+			<form name="agreeFrm" method="get" action="join02">
 				<div id="subBanner"></div>
 				<div id="locationN">
 					<ul>
@@ -205,17 +194,11 @@
 				
 				<div id="terms_button">
 					<input type="reset" value="취소하기" />
-					<input type="button" id="saveBtn" value="가입하기" />
+					<input type="submit" id="saveBtn" value="가입하기" />
 				</div>
 				
 			</form>
 		</section>
-		
-		
-		
-		
-		
-		
 		
 		<footer>
 			<div id="footer_wrap">
