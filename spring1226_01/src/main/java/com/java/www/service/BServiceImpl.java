@@ -41,6 +41,7 @@ public class BServiceImpl implements BService {
 		return map;
 	}// selectOne(bno)
 
+	// 2-1. 댓글 입력 및 & 저장된 댓글 1개 가져오기
 	@Override
 	public BCommentDto BCommentInsert(BCommentDto cdto) {
 		

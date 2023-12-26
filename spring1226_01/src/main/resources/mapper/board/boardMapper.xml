@@ -24,7 +24,7 @@
 
 	<!--2-2.공지사항 게시글 하단댓글 저장 -->
 	<insert id="BCommentInsert">
-		<!--keyProperties는 변수값 -->
+		<!--keyProperties는 변수선언 -->
 		<selectKey resultType="int" keyProperty="cno" order="BEFORE">
 			select ecomment_seq.nextval from dual
 		</selectKey>
