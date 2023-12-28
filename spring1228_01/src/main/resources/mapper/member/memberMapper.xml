@@ -1,0 +1,20 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- MemberMapper.java 연결 -->
+<mapper namespace="com.java.www.mapper.MemberMapper">
+	<!-- 1.①로그인 접속(jsp) -->
+	<select id="loginSelect" resultType="com.java.www.dto.MemberDto">
+		select * from member where id=#{id} and pw=#{pw}
+	</select>
+	
+	<!-- 1.②로그인 접속(ajax) -->
+	<select id="loginCheck" resultType="com.java.www.dto.MemberDto">
+		select * from member where id=#{id} and pw=#{pw}
+	</select>
+	
+	<!-- 2.회원가입-아이디 중복확인(ajax) -->
+	<select id="idCheck" resultType="com.java.www.dto.MemberDto">
+		select * from member where id=#{id}
+	</select>
+</mapper>

@@ -272,12 +272,14 @@ $(document).ready(function() {
 						
 						//1.댓글 1개 저장
 						$(".replyBtn").click(function(){
-							 //alert("댓글을 등록합니다.");
-							 alert(bno);
+							 alert("댓글을 등록합니다.");
+							 //alert(bno);
+							 console.log("댓글 수 : " +$(".cCount").text());
 							 let cpw =$(".replynum").val();
-							 let ccontent =$(".replyType").val()
-							 
-							//♠ajax
+							 let ccontent =$(".replyType").val();
+							 let cCount = Number($(".cCount").text());
+							
+							 //♠ajax
 							$.ajax({
 								url: "/customer/BCommentInsert",
 								type: "post",
@@ -300,7 +302,8 @@ $(document).ready(function() {
 								}//if
 									hdata +='</ul>';
 
-								$(".replyBox").prepend(hdata);
+								$(".replyBox").prepend(hdata); //상단에 추가 append
+								$(".cCount").text(cCount+1); // 댓글 1증가
 								
 								//글쓴 내용 지우기
 								$(".replynum").val("");
@@ -319,6 +322,8 @@ $(document).ready(function() {
 						    //alert("부모의 부모 id : "+$(this).parent().parent().attr("id"));
 						    //alert("부모의 부모 id : "+$(this).closest("ul").attr("id"));
 						    let cno = $(this).closest("ul").attr("id");
+						    let cCount = Number($(".cCount").text());
+						    
 						    if(confirm("댓글을 삭제하시겠습니까?")){
 						      //♠ajax 댓글 삭제
 								$.ajax({
@@ -331,6 +336,9 @@ $(document).ready(function() {
 								console.log("data : "+data)
 								
 								$("#"+cno).remove(); //html삭제
+								//$("#12")
+								$(".cCount").text(cCount-1); // 댓글 1감소
+								
 								}, //success
 								error: function() {
 									alert("실패")
@@ -465,7 +473,7 @@ $(document).ready(function() {
 					<div class="replyWrite">
 						<ul>
 							<li class="in">
-								<p class="txt">총 <span class="orange">${map.bCommentlist.size() }</span> 개의 댓글이 달려있습니다.</p>
+								<p class="txt">총 <span class="orange cCount">${map.bCommentlist.size() }</span> 개의 댓글이 달려있습니다.</p>
 								<p class="password">비밀번호&nbsp;&nbsp;<input type="password" class="replynum" /></p>
 								<textarea class="replyType"></textarea>
 							</li>
