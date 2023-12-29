@@ -164,7 +164,7 @@ $(document).ready(function() {
 				<ul>
 					<li><a href="/layout/chart">CHART EVENT</a></li>
 					<li><a href="customer/notice">CUSTOMER</a></li>
-					<li><a href="#">COMMUNITY</a></li>
+					<li><a href="layout/publicData">DataCOMMUNITY</a></li>
 				</ul>
 			</div>
 			<div id="snb">
@@ -177,8 +177,8 @@ $(document).ready(function() {
 						<li><a href="member/login">LOGIN</a></li>
 						<li><a href="join">JOIN</a></li>
 					</c:if>
-					<li><a href="#">MY PAGE</a></li>
-					<li><a href="#">CART</a></li>
+					<li><a href="layout/bikeData">bike MY PAGE</a></li>
+					<li><a href="layout/screenData">스크린CART</a></li>
 				</ul>
 
 				<div id="search">
