@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>메인페이지20240105</title>
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700,900&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="css/style_main.css">
@@ -15,10 +15,16 @@
 	 	<header>
 	 		<div id="nav_up">
 	 			<ul>
-	 				<li>회원가입</li>
-	 				<li>로그인</li>
-	 				<li>고객행복센터</li>
-	 				<li>배송정보검색</li>
+	 				<c:if test="${session_id!=null }">
+		 				<li>로그아웃</li>
+		 				<li>${session_name }님</li>
+	 				</c:if>
+	 				<c:if test="${session_id==null }">
+		 				<li>회원가입</li>
+		 				<li><a href="/member/login">로그인</a></li>
+	 				</c:if>
+	 				<li><a href="/board/bList">고객행복센터</a></li>
+	 				<li>배송정보검색</li> 
 	 				<li>기프트카드 등록</li>
 	 			</ul>
 	 		</div>

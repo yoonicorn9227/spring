@@ -10,8 +10,34 @@
   <title>Pages - Login</title>
   <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/login.css">
+  <script>
+  	$(function(){
+  		$("#logBtn").click(function(){
+  			
+  			let id = $("#id").val();
+  			let pw = $("#pw").val();
+  			
+  			if(id.length<1){
+  				alert("아이디을 입력하셔야 합니다.");
+  				$("#id").focus();
+  				return false;
+  			}//if(아이디 미입력)
+  				
+  			if(pw.length<1){
+  				alert("비밀번호를 입력하셔야 합니다.");
+  				$("#pw").focus();
+  				return false;
+  			}//if(비밀번호 미입력)
+  			
+  			
+  			loginFrm.submit();
+  			
+  		});//#logBtn
+  	});//제이쿼리 최신
+  </script>
+  
 </head>
 
 <body>
@@ -59,7 +85,7 @@
       </ul>  
     </article>
 
-    <form action="/login" name="login" method="post">
+    <form action="login" name="loginFrm" method="post">
       <div class="id">
         <input type="text" id="id" name="id" size="30" placeholder="CJ ONE 통합아이디 6~20자">
       </div>
@@ -76,7 +102,7 @@
         <span>아이디 찾기</span> <span class="separator">|</span> <span>비밀번호 찾기</span>
       </div>
 
-      <button type="submit">로그인</button>
+      <button type="button" id="logBtn">로그인</button>
     </form>
 
     <ul class="login-icons">

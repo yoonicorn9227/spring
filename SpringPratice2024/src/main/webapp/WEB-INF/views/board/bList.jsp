@@ -11,10 +11,9 @@
   <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/read.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/notice_list.css">
 </head>
-
 <body>
   <header>
     <ul>
@@ -52,29 +51,53 @@
 
   <section>
     <h1>NOTICE</h1>
+    <div class="wrapper">
+      <form action="/search" name="search" method="post">
+        <select name="category" id="category">
+          <option value="0">전체</option>
+          <option value="title">제목</option>
+          <option value="content">내용</option>
+        </select>
+
+        <div class="title">
+          <input type="text" size="16">
+        </div>
+  
+        <button type="submit"><i class="fas fa-search"></i></button>
+      </form>
+    </div>
 
     <table>
+      <colgroup>
+        <col width="18%">
+        <col width="60%">
+        <col width="18%">
+      </colgroup>
       <tr>
-        <th>[키즈잼] 2020년 이용 시간 & 이용 요금 변경 안내</th>
+        <th>No.</th>
+        <th>제목</th>
+        <th>작성일</th>
       </tr>
-      <tr>
-        <td>2019-12-11</td>
-      </tr>
-      <tr>
-        <td class="article">
-          <img src="https://www.midashotel.co.kr/Midas_uploads/2019-12-11%2017-13-142020%EB%85%84_%ED%82%A4%EC%A6%88%EC%9E%BC_%EB%B3%80%EA%B2%BD%EC%82%AC%ED%95%AD_%EC%95%88%EB%82%B4.jpg" alt="" width="80%"></td>
-      </tr>
-      <tr>
-        <td><strong>다음글</strong> <span class="separator">|</span> [키즈잼] 2월 프로그램 안내</td>
-      </tr>
-      <tr>
-        <td><strong>이전글</strong> <span class="separator">|</span> [키즈잼] 2020년 1분기 정기 휴관일 안내</td>
-      </tr>
+      <c:forEach var="bdto" items="${list }">
+	      <tr>
+	        <td>${bdto.bno }</td>
+	        <td class="table-title"><a href="bList?bno=${bdto.bno }"> ${bdto.btitle }</a></td>
+	        <td><fmt:formatDate value="${bdto.bdate }" pattern="yyyy-MM-dd"/></td>
+	      </tr>
+      </c:forEach>
     </table>
 
-    <div class="list">목록</div>
-    <div class="list">삭제</div>
-    <div class="list">수정</div>
+    <ul class="page-num">
+      <li class="first"></li>
+      <li class="prev"></li>
+      <li class="num">
+        <div>1</div>
+      </li>
+      <li class="next"></li>
+      <li class="last"></li>
+    </ul>
+
+    <div class="write">쓰기</div>
   </section>
 
   <footer>
